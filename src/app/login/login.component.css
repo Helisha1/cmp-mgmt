@@ -1,0 +1,36 @@
+.login-body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(102,51,153, 0.8);
+}
+
+.login-box {
+    width: 32%;
+    padding: 2rem;
+    background: whitesmoke;
+}
+
+.login-box > * {
+    padding: 1rem;
+}
+
+.halign-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-field {
+    display: block;
+}
+
+span {
+    margin-right: 1rem;
+}
+
+button {
+    width: 80%;
+    margin: 0px 4rem;
+}

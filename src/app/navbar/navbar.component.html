@@ -1,0 +1,52 @@
+<mat-toolbar class="mat-elevation-z10" color="primary">
+    <div class="col-xs-8 col-md-10">
+        <button mat-button [routerLink]="['operations']" routerLinkActive="active">Operations</button>
+        <button mat-button [routerLink]="['payslip']" routerLinkActive="active">Generate Pay Slip</button>
+        <button mat-button [routerLink]="['req-mail']" routerLinkActive="active">Request/Mail</button>
+    </div>
+    <div class="col-xs-4 col-md-2">
+        <button mat-button routerLink="">Logout</button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>invert_colors</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="changeTheme('a')">
+                <div class="theme-name-holder">
+                    <span class="theme-name">Indigo Pink</span>
+                </div>
+                <div class="theme-icon">
+                    <div class="left-part" style="background: #3f51b5"></div>
+                    <div class="right-part" style="background: #ff4081"></div>
+                </div>
+            </button>
+            <button mat-menu-item (click)="changeTheme('b')">
+                <div class="theme-name-holder">
+                    <span class="theme-name">Deeppurple Amber</span>
+                </div>
+                <div class="theme-icon">
+                    <div class="left-part" style="background: #673ab7"></div>
+                    <div class="right-part" style="background: #ffd740"></div>
+                </div>
+            </button>
+            <!-- <button mat-menu-item (click)="changeTheme('c')">
+                <div class="theme-name-holder">
+                    <span class="theme-name">Pink Bluegrey</span>
+                </div>
+                <div class="theme-icon">
+                    <div class="left-part" style="background: #c2185b"></div>
+                    <div class="right-part" style="background: #b0bec5"></div>
+                </div>
+            </button>
+            <button mat-menu-item (click)="changeTheme('d')">
+                <div class="theme-name-holder">
+                    <span class="theme-name">Purple Green</span>
+                </div>
+                <div class="theme-icon">
+                    <div class="left-part" style="background: #7b1fa2"></div>
+                    <div class="right-part" style="background: #69f0ae"></div>
+                </div>
+            </button> -->
+        </mat-menu>
+    </div>
+</mat-toolbar>

@@ -1,0 +1,302 @@
+<div class="container" color="primary">
+  <div class="header mat-elevation-z8">
+    <h1>Payslip Form</h1>
+  </div>
+
+  <div class="content">
+    <form>
+
+      <mat-form-field id="emp-id">
+        <mat-select placeholder="Select employee ID:" [(ngModel)]="selectedEmployee" name="employee" (change)="loadValues(); updateValues();">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let employee of employees" [value]="employee">{{ employee.emp_id }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <table class="employee-info">
+        <tr>
+          <td class="fname">Name</td>
+          <td class="fvalue">:&nbsp;&nbsp;&nbsp;{{ selectedEmployee?.name }}</td>
+        </tr>
+        <tr>
+          <td class="fname">Designation</td>
+          <td class="fvalue">:&nbsp;&nbsp;&nbsp;{{ selectedEmployee?.designation }}</td>
+        </tr>
+        <tr>
+          <td class="fname">E-mail id</td>
+          <td class="fvalue">:&nbsp;&nbsp;&nbsp;{{ selectedEmployee?.email }}</td>
+        </tr>
+        <tr>
+          <td class="fname">Bank A/c</td>
+          <td class="fvalue">:&nbsp;&nbsp;&nbsp;{{ selectedEmployee?.bankAc }}</td>
+        </tr>
+      </table>
+
+      <!-- salary month, paid on, date off not included -->
+      <table class="amounts">
+        <tr>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Basic" [(ngModel)]="amountHolder.basic" name="basic" [formControl]="formControls['basic']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['basic'].hasError('min') && !formControls['basic'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['basic'].hasError('required')">
+                Basic is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Loyalty" [(ngModel)]="amountHolder.loyalty" name="loyalty" [formControl]="formControls['loyalty']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['loyalty'].hasError('min') && !formControls['loyalty'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['loyalty'].hasError('required')">
+                Loyalty is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="DA" [(ngModel)]="amountHolder.da" name="da" [formControl]="formControls['da']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['da'].hasError('min') && !formControls['da'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['da'].hasError('required')">
+                DA is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Accomp" [(ngModel)]="amountHolder.accomp" name="accomp" [formControl]="formControls['accomp']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['accomp'].hasError('min') && !formControls['accomp'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['accomp'].hasError('required')">
+                Accomp. is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Con. Allowance" [(ngModel)]="amountHolder.conAllowance" name="conAllowance" [formControl]="formControls['conAllowance']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['conAllowance'].hasError('min') && !formControls['conAllowance'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['conAllowance'].hasError('required')">
+                Con. allowance is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Arrears" [(ngModel)]="amountHolder.arrears" name="arrears" [formControl]="formControls['arrears']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['arrears'].hasError('min') && !formControls['arrears'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['arrears'].hasError('required')">
+                Arrears is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Med. Allowance" [(ngModel)]="amountHolder.medAllowance" name="medAllowance" [formControl]="formControls['medAllowance']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['medAllowance'].hasError('min') && !formControls['medAllowance'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['medAllowance'].hasError('required')">
+                Medical allowance is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="TDS" [(ngModel)]="amountHolder.tds" name="tds" [formControl]="formControls['tds']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['tds'].hasError('min') && !formControls['tds'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['tds'].hasError('required')">
+                TDS is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Tel. Allowance" [(ngModel)]="amountHolder.telAllowance" name="telAllowance" [formControl]="formControls['telAllowance']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['telAllowance'].hasError('min') && !formControls['telAllowance'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['telAllowance'].hasError('required')">
+                Telephone allowance is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Prof. tax" [(ngModel)]="amountHolder.profTax" name="profTax" [formControl]="formControls['profTax']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['profTax'].hasError('min') && !formControls['profTax'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['profTax'].hasError('required')">
+                Prof. tax is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Sp. Allowance" [(ngModel)]="amountHolder.spAllowance" name="spAllowance" [formControl]="formControls['spAllowance']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['spAllowance'].hasError('min') && !formControls['spAllowance'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['spAllowance'].hasError('required')">
+                Special allowance is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Adv." [(ngModel)]="amountHolder.adv" name="adv" [formControl]="formControls['adv']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['adv'].hasError('min') && !formControls['adv'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['adv'].hasError('required')">
+                ADV is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Internet Allowance" [(ngModel)]="amountHolder.internetAllowance" name="internetAllowance"
+                [formControl]="formControls['internetAllowance']" (input)="updateValues()" />
+              <mat-error *ngIf="formControls['internetAllowance'].hasError('min') && !formControls['internetAllowance'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['internetAllowance'].hasError('required')">
+                Internet allowance is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Other" [(ngModel)]="amountHolder.other" name="other" [formControl]="formControls['other']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['other'].hasError('min') && !formControls['other'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['other'].hasError('required')">
+                Other is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Maintenance" [(ngModel)]="amountHolder.maintenance" name="maintenance" [formControl]="formControls['maintenance']"
+                (input)="updateValues()" />
+              <mat-error *ngIf="formControls['maintenance'].hasError('min') && !formControls['maintenance'].hasError('required')">
+                Please enter a valid amount
+              </mat-error>
+              <mat-error *ngIf="formControls['maintenance'].hasError('required')">
+                Maintainance is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td class="amount-cell"></td>
+        </tr>
+      </table>
+
+      <table class="d-flex justify-content-center">
+        <tr>
+          <td class="fname">HRA</td>
+          <td class="fvalue">: &nbsp;
+            <span matPrefix>&#8377; &nbsp;</span>{{ amountHolder.hra }}</td>
+        </tr>
+        <tr>
+          <td class="fname">Regular</td>
+          <td class="fvalue">: &nbsp;
+            <span matPrefix>&#8377; &nbsp;</span>{{ amountHolder.regular }}</td>
+        </tr>
+        <tr>
+          <td class="fname">PF</td>
+          <td class="fvalue">: &nbsp;
+            <span matPrefix>&#8377; &nbsp;</span>{{ amountHolder.pf }}</td>
+        </tr>
+        <tr>
+          <td class="fname">Monthly Gross</td>
+          <td class="fvalue">: &nbsp;
+            <span matPrefix>&#8377; &nbsp;</span>{{ amountHolder.monthlyGross }}</td>
+        </tr>
+        <tr>
+          <td class="fname">Total</td>
+          <td class="fvalue">: &nbsp;
+            <span matPrefix>&#8377; &nbsp;</span>{{ amountHolder.total }}</td>
+        </tr>
+        <tr>
+          <td class="fname">Monthly Net</td>
+          <td class="fvalue">: &nbsp;
+            <span matPrefix>&#8377; &nbsp;</span>{{ amountHolder.monthlyNet }}</td>
+        </tr>
+      </table>
+    </form>
+  </div>
+
+</div>

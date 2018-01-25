@@ -8,14 +8,18 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 })
 export class OperationsComponent implements OnInit {
 
-  // columnHeadings = ['Employee ID', 'Name', 'Designation', 'Salary', 'Joining date'];
+  columnHeadings = [{value:'e_id', viewValue:'Employee ID'}, 
+                    {value:'name', viewValue:'Name'}, 
+                    {value:'designation',viewValue:'Designation'},
+                    { value:'salary',viewValue:'Salary'},
+                    {value:'joining_date',viewValue:'Joining date'} ];
   displayedColumns = ['e_id', 'name', 'designation', 'salary', 'joining_date'];
   dataSource = new MatTableDataSource(EMPLOYEE_DATA);
 
   filter: string;
   selectedColumn: string;
   lastFilterLength: number = 0;
-
+  column: string ;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -32,8 +36,10 @@ export class OperationsComponent implements OnInit {
 
   applyFilter(filterValue: string) { console.log(this.selectedColumn);
     this.filter = filterValue;
-    if(filterValue === '' || filterValue.length < this.lastFilterLength) {
+    if (filterValue === '') {
       this.dataSource = new MatTableDataSource(EMPLOYEE_DATA);
+    } else if (filterValue.length < this.lastFilterLength) {
+      this.dataSource = new MatTableDataSource(this.filterData(EMPLOYEE_DATA));
     } else {
       this.dataSource = new MatTableDataSource(this.filterData(this.dataSource.data));
     }
@@ -48,7 +54,7 @@ export class OperationsComponent implements OnInit {
     return filteredData;
   }
 
-  filterPredicate(data: Empl, filter: string): boolean { console.log(this.selectedColumn);
+  filterPredicate(data: Empl, filter: string): boolean { console.log(this.selectedColumn+"my");
     const dataStr = (data[this.selectedColumn] + '').toLowerCase();
     const transformedFilter = filter.trim().toLowerCase();
 

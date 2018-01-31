@@ -1,29 +1,30 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-operations',
   templateUrl: './operations.component.html',
   styleUrls: ['./operations.component.css']
 })
-export class OperationsComponent implements OnInit {
+export class OperationsComponent implements OnInit, AfterViewInit {
 
-  columnHeadings = [{value:'e_id', viewValue:'Employee ID'}, 
-                    {value:'name', viewValue:'Name'}, 
-                    {value:'designation',viewValue:'Designation'},
-                    { value:'salary',viewValue:'Salary'},
-                    {value:'joining_date',viewValue:'Joining date'} ];
+  columnHeadings = [{ value: 'e_id', viewValue: 'Employee ID' },
+  { value: 'name', viewValue: 'Name' },
+  { value: 'designation', viewValue: 'Designation' },
+  { value: 'salary', viewValue: 'Salary' },
+  { value: 'joining_date', viewValue: 'Joining date' }];
   displayedColumns = ['e_id', 'name', 'designation', 'salary', 'joining_date'];
   dataSource = new MatTableDataSource(EMPLOYEE_DATA);
 
   filter: string;
   selectedColumn: string;
   lastFilterLength: number = 0;
-  column: string ;
+  column: string;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngAfterViewInit() {
     this.updateSortAndPaginator();
@@ -34,7 +35,8 @@ export class OperationsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  applyFilter(filterValue: string) { console.log(this.selectedColumn);
+  applyFilter(filterValue: string) {
+    console.log(this.selectedColumn);
     this.filter = filterValue;
     if (filterValue === '') {
       this.dataSource = new MatTableDataSource(EMPLOYEE_DATA);
@@ -49,12 +51,13 @@ export class OperationsComponent implements OnInit {
 
   filterData(data: Empl[]) {
     let filteredData =
-        !this.filter ? data : data.filter(obj => this.filterPredicate(obj, this.filter));
+      !this.filter ? data : data.filter(obj => this.filterPredicate(obj, this.filter));
 
     return filteredData;
   }
 
-  filterPredicate(data: Empl, filter: string): boolean { console.log(this.selectedColumn+"my");
+  filterPredicate(data: Empl, filter: string): boolean {
+    console.log(this.selectedColumn + "my");
     const dataStr = (data[this.selectedColumn] + '').toLowerCase();
     const transformedFilter = filter.trim().toLowerCase();
 

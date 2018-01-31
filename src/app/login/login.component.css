@@ -3,12 +3,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(102,51,153, 0.8);
 }
 
 .login-box {
     width: 32%;
     padding: 2rem;
+    box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.19);
     background: whitesmoke;
 }
 
@@ -33,4 +33,6 @@ span {
 button {
     width: 80%;
     margin: 0px 4rem;
+    background: #903564;
+    color: white;
 }

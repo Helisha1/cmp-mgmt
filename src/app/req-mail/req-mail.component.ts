@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReqMailComponent implements OnInit {
 
+  templateData = '';
   constructor() { }
 
+
   ngOnInit() {
+  }
+  getTemplate(data: string) {
+    this.templateData = data;
+
   }
 
 }

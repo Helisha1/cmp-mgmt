@@ -15,7 +15,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent, pathMatch:'full' },
+  { path: '', component: LoginComponent, pathMatch: 'full' },
   { path: 'logout', component: LoginComponent },
   {
     path: 'compensation', component: CompensationComponent,

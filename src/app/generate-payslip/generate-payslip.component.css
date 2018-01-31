@@ -3,14 +3,19 @@ div.container {
 }
 
 div.header {
-    background-color: cornflowerblue;
-    border-bottom: 0.5rem burlywood solid;
-    padding: 0.5rem 0 0 0.75rem;
+    background-color: #e3e9f3;
+    /* border-bottom: 0.5rem rgba(0,0,0,.54) solid; */
+    padding: 0.75rem;
+    text-align: center;
+    border-radius: 1rem 1rem 0 0;
+    margin-top: 2rem;
 }
 
 div.content {
-    background-color: lightblue;
+    background-color: #fff;
     padding: 1rem;
+    border-radius: 0 0 1rem 1rem;
+    margin-bottom: 2rem;
 }
 
 mat-form-field#emp-id {
